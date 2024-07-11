@@ -1,28 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://chxrq0w2cyphl"]
+[gd_scene load_steps=4 format=3 uid="uid://chxrq0w2cyphl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cpk7a"]
-[ext_resource type="Shader" path="res://res/shaders/placeholderPlayerAnim.gdshader" id="1_rfdp8"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iv80k"]
-shader = ExtResource("1_rfdp8")
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g14ih"]
-size = Vector2(16, 16)
+[ext_resource type="Texture2D" uid="uid://bwp4pgxcldfv4" path="res://res/img/pers_1_1_64kh64-export.png" id="2_8w3ta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwsqm"]
+size = Vector2(64, 64)
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_cpk7a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_iv80k")
-texture = SubResource("PlaceholderTexture2D_g14ih")
+texture = ExtResource("2_8w3ta")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_vwsqm")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_vwsqm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
