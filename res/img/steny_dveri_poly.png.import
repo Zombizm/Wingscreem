@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beq73v8ovgsfr"
-path="res://.godot/imported/tunnel.png-f628ea8028c31dcb83bbcae741d91478.ctex"
+uid="uid://bunqtie1oehu0"
+path="res://.godot/imported/steny_dveri_poly.png-d2f21a0c30f5e624acd4466d5fbfde2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/img/Mint-Asset-Pack/tunnel.png"
-dest_files=["res://.godot/imported/tunnel.png-f628ea8028c31dcb83bbcae741d91478.ctex"]
+source_file="res://res/img/steny_dveri_poly.png"
+dest_files=["res://.godot/imported/steny_dveri_poly.png-d2f21a0c30f5e624acd4466d5fbfde2a.ctex"]
 
 [params]
 

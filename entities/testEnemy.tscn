@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgn6u0holn3eh"]
+
+[ext_resource type="Texture2D" uid="uid://bahjp21i3cnf5" path="res://res/img/okhrannik_s_bitoy_1_3.png" id="1_heiox"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snxvl"]
+atlas = ExtResource("1_heiox")
+region = Rect2(0, 0, 450, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kroo"]
+atlas = ExtResource("1_heiox")
+region = Rect2(450, 0, 450, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmx8l"]
+atlas = ExtResource("1_heiox")
+region = Rect2(900, 0, 450, 1000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ona4y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snxvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kroo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmx8l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="enemy" type="Node3D"]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.08884, 0)
+billboard = 1
+alpha_cut = 1
+sprite_frames = SubResource("SpriteFrames_ona4y")
+autoplay = "default"
+frame_progress = 0.237189

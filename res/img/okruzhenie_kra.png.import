@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crmhi8fhvsiga"
-path="res://.godot/imported/Alien002.png-1f6c463cfb92b3a28b56f063c6506a62.ctex"
+uid="uid://1fsi6xvaf21i"
+path="res://.godot/imported/okruzhenie_kra.png-28763a10db1a8e8d4835c7920cb3cc4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/img/Mint-Asset-Pack/Alien002.png"
-dest_files=["res://.godot/imported/Alien002.png-1f6c463cfb92b3a28b56f063c6506a62.ctex"]
+source_file="res://res/img/okruzhenie_kra.png"
+dest_files=["res://.godot/imported/okruzhenie_kra.png-28763a10db1a8e8d4835c7920cb3cc4a.ctex"]
 
 [params]
 

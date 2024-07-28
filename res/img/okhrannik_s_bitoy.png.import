@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eh2rvk20336"
-path="res://.godot/imported/screen-base.png-391bd8a227fb58ffae0de89d79528a46.ctex"
+uid="uid://clcsv46r81xmf"
+path="res://.godot/imported/okhrannik_s_bitoy.png-273a5bcbe30215975d784eebb0bceeab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/img/Mint-Asset-Pack/screen-base.png"
-dest_files=["res://.godot/imported/screen-base.png-391bd8a227fb58ffae0de89d79528a46.ctex"]
+source_file="res://res/img/okhrannik_s_bitoy.png"
+dest_files=["res://.godot/imported/okhrannik_s_bitoy.png-273a5bcbe30215975d784eebb0bceeab.ctex"]
 
 [params]
 

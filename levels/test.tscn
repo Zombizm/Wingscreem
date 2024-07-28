@@ -1,108 +1,44 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdxifv2r4tlcl"]
+[gd_scene load_steps=8 format=3 uid="uid://bdxifv2r4tlcl"]
 
-[ext_resource type="Texture2D" uid="uid://cdbmkftuyoala" path="res://res/img/maxresdefault.jpg" id="1_bcgf7"]
 [ext_resource type="PackedScene" uid="uid://chxrq0w2cyphl" path="res://entities/player.tscn" id="2_ui1rq"]
-[ext_resource type="Texture2D" uid="uid://bjwehhu1vnadr" path="res://res/img/tayl_mapa_V_floor.png" id="3_jexbb"]
-[ext_resource type="Texture2D" uid="uid://dcfrxrmit2xja" path="res://res/img/pol_vasche_ves_zhest.png" id="3_lcp8p"]
-[ext_resource type="PackedScene" uid="uid://biy6hymw6vmm" path="res://entities/room_area.tscn" id="3_txc70"]
-[ext_resource type="Texture2D" uid="uid://drnrnlm5emm67" path="res://res/img/steny_s_dvermi.png" id="4_ic0fn"]
+[ext_resource type="PackedScene" uid="uid://bgn6u0holn3eh" path="res://entities/testEnemy.tscn" id="2_xu5ju"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gacyj"]
-texture = ExtResource("3_jexbb")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
+[sub_resource type="BoxShape3D" id="BoxShape3D_2io10"]
+size = Vector3(50.2777, 1, 49.9968)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_645i3"]
-texture = ExtResource("3_lcp8p")
-texture_region_size = Vector2i(64, 64)
-0:4/0 = 0
-1:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
+[sub_resource type="Gradient" id="Gradient_umkd4"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4hk0q"]
-texture = ExtResource("4_ic0fn")
-texture_region_size = Vector2i(64, 64)
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f2dla"]
+frequency = 0.0259
 
-[sub_resource type="TileSet" id="TileSet_52tkq"]
-tile_size = Vector2i(64, 64)
-sources/1 = SubResource("TileSetAtlasSource_gacyj")
-sources/3 = SubResource("TileSetAtlasSource_645i3")
-sources/4 = SubResource("TileSetAtlasSource_4hk0q")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4b8pc"]
+color_ramp = SubResource("Gradient_umkd4")
+noise = SubResource("FastNoiseLite_f2dla")
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4ogsn"]
-scenes/1/scene = ExtResource("2_ui1rq")
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_l3xd7"]
+albedo_color = Color(0.652883, 0.139892, 0.132648, 1)
+orm_texture = SubResource("NoiseTexture2D_4b8pc")
 
-[sub_resource type="TileSet" id="TileSet_66833"]
-tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetScenesCollectionSource_4ogsn")
+[node name="Node2D" type="Node3D"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t160g"]
-size = Vector2(96, 106)
+[node name="enemy" parent="." instance=ExtResource("2_xu5ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.08192, -15.3816)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ltx7"]
-size = Vector2(91, 105)
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.07846)
 
-[node name="Node2D" type="Node2D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1668, 0, -19.2397)
+shape = SubResource("BoxShape3D_2io10")
 
-[node name="Maxresdefault" type="Sprite2D" parent="."]
-position = Vector2(670, 383)
-scale = Vector2(1.60898, 1.93264)
-texture = ExtResource("1_bcgf7")
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2494, 0, -19.2564)
+size = Vector3(50.503, 1, 49.9736)
+material = SubResource("ORMMaterial3D_l3xd7")
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_52tkq")
-format = 2
-layer_0/tile_data = PackedInt32Array(1376264, 131074, 4, 1441800, 131074, 4, 1507336, 131074, 4, 1572872, 131074, 4, 1638408, 131074, 4, 1703944, 131074, 4, 1769480, 131074, 4, 1835016, 131074, 4, 1376265, 131074, 4, 1441801, 65537, 1, 1507337, 65537, 0, 1572873, 65537, 0, 1638409, 65537, 0, 1703945, 65537, 0, 1769481, 65537, 0, 1835017, 65537, 0, 1376266, 131074, 4, 1441802, 65537, 0, 1507338, 65537, 0, 1572874, 65537, 0, 1638410, 65537, 0, 1703946, 65537, 0, 1769482, 65537, 1, 1835018, 65537, 0, 1376267, 131074, 4, 1441803, 65537, 0, 1507339, 65537, 0, 1572875, 65537, 1, 1638411, 65537, 1, 1703947, 65537, 1, 1769483, 65537, 0, 1835019, 65537, 1, 1376268, 131074, 4, 1441804, 65537, 0, 1507340, 65537, 0, 1572876, 65537, 0, 1638412, 65537, 0, 1703948, 65537, 0, 1769484, 65537, 0, 1835020, 65537, 1, 1376269, 131074, 4, 1441805, 65537, 0, 1507341, 65537, 0, 1572877, 65537, 0, 1638413, 65537, 0, 1703949, 65537, 0, 1769485, 65537, 0, 1835021, 65537, 1, 1376270, 131074, 4, 1441806, 65537, 0, 1507342, 65537, 0, 1572878, 65537, 1, 1638414, 65537, 1, 1703950, 65537, 1, 1769486, 65537, 0, 1835022, 65537, 1, 1376271, 131074, 4, 1441807, 65537, 0, 1507343, 65537, 0, 1572879, 65537, 0, 1638415, 65537, 0, 1703951, 65537, 0, 1769487, 65537, 1, 1835023, 65537, 0, 1376272, 131074, 4, 1441808, 65537, 1, 1507344, 65537, 0, 1572880, 65537, 0, 1638416, 65537, 0, 1703952, 65537, 0, 1769488, 65537, 0, 1835024, 65537, 0, 1376273, 131074, 4, 1441809, 131074, 4, 1507345, 131074, 4, 1572881, 131074, 4, 1638417, 131074, 4, 1703953, 131074, 4, 1769489, 131074, 4, 1835025, 131074, 4, 1900553, 1, 1, 1966089, 1, 1, 1900554, 1, 1, 1966090, 1, 1, 1900555, 1, 1, 1966091, 1, 1, 1900556, 1, 1, 1966092, 1, 1, 1900557, 1, 1, 1966093, 1, 1, 1900558, 1, 1, 1966094, 1, 1, 1900559, 1, 1, 1966095, 1, 1, 1900560, 1, 1, 1966096, 1, 1, 1900561, 65537, 0, 1966097, 65537, 0, 1900562, 65537, 0, 1966098, 65537, 0, 1900551, 65537, 0, 1966087, 65537, 0, 1900552, 65537, 0, 1966088, 65537, 0, 4, 65539, 1610612742, 65540, 65539, 805306374, 131076, 3, 1342177287, 196612, 3, 1342177287, 262148, 3, 1342177287, 327684, 3, 1342177287, 393220, 3, 1342177287, 458756, 3, 1342177287, 524292, 3, 1342177287, 589828, 3, 1342177287, 655364, 3, 7, 5, 3, 805306375, 65541, 3, 7, 131077, 3, 5, 196613, 3, 5, 262149, 3, 5, 327685, 3, 5, 393221, 3, 5, 458757, 3, 5, 524293, 3, 5, 589829, 3, 5, 655365, 3, 7, 6, 65539, 6, 65542, 65540, 1342177286, 131078, 3, 5, 196614, 3, 5, 262150, 3, 5, 327686, 3, 5, 393222, 3, 5, 458758, 3, 5, 524294, 3, 5, 589830, 3, 5, 655366, 3, 7, 7, 3, 805306375, 65543, 4, 1342177287, 131079, 3, 5, 196615, 3, 5, 262151, 3, 5, 327687, 3, 5, 393223, 3, 5, 458759, 3, 5, 524295, 3, 5, 589831, 3, 5, 655367, 3, 7, 8, 3, 805306375, 65544, 3, 5, 131080, 3, 5, 196616, 65540, 805306375, 262152, 4, 1610612743, 327688, 4, 805306374, 393224, 65540, 1342177286, 458760, 3, 5, 524296, 3, 5, 589832, 3, 5, 655368, 3, 7, 9, 3, 805306375, 65545, 65540, 6, 131081, 3, 5, 196617, 65540, 7, 262153, 4, 1342177287, 327689, 4, 6, 393225, 65540, 1610612742, 458761, 3, 5, 524297, 3, 5, 589833, 3, 5, 655369, 3, 7, 10, 3, 805306375, 65546, 3, 5, 131082, 3, 5, 196618, 3, 5, 262154, 3, 5, 327690, 3, 5, 393226, 3, 5, 458762, 3, 5, 524298, 3, 5, 589834, 3, 5, 655370, 3, 7, 11, 3, 805306375, 65547, 3, 5, 131083, 3, 5, 196619, 3, 5, 262155, 3, 5, 327691, 3, 5, 393227, 3, 5, 458763, 3, 5, 524299, 3, 5, 589835, 3, 5, 655371, 3, 7, 12, 3, 805306375, 65548, 3, 5, 131084, 3, 5, 196620, 3, 5, 262156, 3, 5, 327692, 3, 5, 393228, 3, 5, 458764, 3, 5, 524300, 3, 5, 589836, 3, 5, 655372, 3, 7, 13, 3, 805306375, 65549, 3, 5, 131085, 3, 5, 196621, 3, 5, 262157, 3, 5, 327693, 3, 5, 393229, 3, 5, 458765, 3, 5, 524301, 3, 5, 589837, 3, 5, 655373, 3, 7, 14, 3, 805306375, 65550, 3, 5, 131086, 3, 5, 196622, 3, 5, 262158, 3, 5, 327694, 3, 5, 393230, 3, 5, 458766, 3, 5, 524302, 3, 5, 589838, 3, 5, 655374, 3, 7, 15, 3, 805306375, 65551, 3, 5, 131087, 3, 5, 196623, 3, 5, 262159, 3, 5, 327695, 3, 5, 393231, 3, 5, 458767, 3, 5, 524303, 3, 5, 589839, 3, 5, 655375, 3, 7, 16, 65539, 6, 65552, 3, 1610612743, 131088, 3, 1610612743, 196624, 3, 1610612743, 262160, 3, 1610612743, 327696, 3, 1610612743, 393232, 3, 1610612743, 458768, 3, 1610612743, 524304, 3, 1610612743, 589840, 3, 1610612743, 655376, 65539, 1342177286)
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.84887, 0)
+light_energy = 5.04
+omni_range = 58.274
 
-[node name="entityMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_66833")
-format = 2
-layer_0/tile_data = PackedInt32Array(65540, 0, 65536)
-
-[node name="RoomArea" parent="." instance=ExtResource("3_txc70")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomArea"]
-position = Vector2(430, 151)
-shape = SubResource("RectangleShape2D_t160g")
-
-[node name="RoomArea2" parent="." instance=ExtResource("3_txc70")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomArea2"]
-position = Vector2(544.5, 219.5)
-shape = SubResource("RectangleShape2D_4ltx7")
+[node name="Player" parent="." instance=ExtResource("2_ui1rq")]
