@@ -1,17 +1,20 @@
 extends CharacterBody3D
 
-
-const SPEED = 5.0
+var SPEED: float = 5.1
 const SPRINTING_SPEED = 8.0
 const CROUCH_SPEED = 3.0
 const JUMP_VELOCITY = 9.5
 
 const MOUSE_SENSE = 0.4
 
-var currentSpeed = SPEED
+
+
+
 
 const LERP_SPEED = 10.0
 
+@onready var move_to = $head/look_at
+@onready var camera = $head/Camera3D
 @onready var head = $head
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -20,24 +23,19 @@ func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
 
-var input_dir = Input.get_vector("left", "right", "forward", "backward")
+var input_dir = Input.get_vector("forward", "backward", "left", "right" )
 func _input(event):
-	input_dir = Input.get_vector("left", "right", "forward", "backward")
+	input_dir = Input.get_vector("forward", "backward", "left", "right" )
 	
 	if not event is InputEventMouseMotion: return
 	rotate_y(-deg_to_rad(event.relative.x * MOUSE_SENSE))
-	head.rotate_x(-deg_to_rad(event.relative.y * MOUSE_SENSE))
-	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89),  deg_to_rad(89))
+	camera.rotate_x(-deg_to_rad(event.relative.y * MOUSE_SENSE))
+	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89),  deg_to_rad(89))
 
+var currentSpeed = 10
 var direction = Vector3.ZERO
 func _physics_process(delta):
 	
-	if Input.is_action_pressed("crouch") and is_on_floor():
-		currentSpeed = CROUCH_SPEED
-	elif Input.is_action_pressed("crouch"):
-		velocity.y -= 100 * delta
-	else:
-		currentSpeed = SPEED
 	
 	
 	
@@ -52,7 +50,7 @@ func _physics_process(delta):
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	# var input_dir = Input.get_vector("left", "right", "forward", "backward")
+	input_dir = Input.get_vector( "left", "right", "forward", "backward" )
 	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * LERP_SPEED)
 	if direction:
 		velocity.x = direction.x * currentSpeed

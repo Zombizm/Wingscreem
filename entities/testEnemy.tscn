@@ -34,8 +34,9 @@ animations = [{
 [node name="enemy" type="Node3D"]
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.08884, 0)
-billboard = 1
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.2, 0)
+offset = Vector2(0, 500)
+billboard = 2
 alpha_cut = 1
 sprite_frames = SubResource("SpriteFrames_ona4y")
 autoplay = "default"

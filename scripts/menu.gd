@@ -13,7 +13,7 @@ func _process(delta):
 
 
 func _on_play_btn_pressed():
-	get_tree().change_scene_to_file("res://levels/test.tscn")
+	get_tree().change_scene_to_file("res://levels/test_grid.tscn")
 
 
 func _on_options_btn_pressed():

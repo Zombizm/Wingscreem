@@ -1,15 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://sfbc8ge46c2r"]
+[gd_scene load_steps=5 format=3 uid="uid://sfbc8ge46c2r"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0qeey"]
+[ext_resource type="Texture2D" uid="uid://dfixyaox4hjw1" path="res://res/img/wallBlockTexture.png" id="1_vcsb4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3u6v"]
-size = Vector2(64, 64)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gw5ud"]
+albedo_texture = ExtResource("1_vcsb4")
+metallic = 1.0
+metallic_specular = 0.0
+anisotropy_enabled = true
+anisotropy = 0.33
+subsurf_scatter_enabled = true
 
-[node name="BarrierTile" type="Node2D"]
+[sub_resource type="BoxMesh" id="BoxMesh_wyo4p"]
+material = SubResource("StandardMaterial3D_gw5ud")
+size = Vector3(2, 2, 2)
 
-[node name="Area2D" type="StaticBody2D" parent="."]
-physics_material_override = SubResource("PhysicsMaterial_0qeey")
+[sub_resource type="BoxShape3D" id="BoxShape3D_754ce"]
+size = Vector3(2, 2, 2)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_y3u6v")
-debug_color = Color(0.976727, 0, 0.409636, 0.42)
+[node name="BarrierTile" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wyo4p")
+
+[node name="Area3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("BoxShape3D_754ce")

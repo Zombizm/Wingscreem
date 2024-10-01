@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3v0itatpm76n"]
+
+[ext_resource type="PackedScene" uid="uid://chxrq0w2cyphl" path="res://entities/player.tscn" id="1_germf"]
+[ext_resource type="PackedScene" uid="uid://bgn6u0holn3eh" path="res://entities/testEnemy.tscn" id="2_5j7df"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2io10"]
+size = Vector3(50.2777, 1, 49.9968)
+
+[sub_resource type="Gradient" id="Gradient_umkd4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f2dla"]
+frequency = 0.0259
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4b8pc"]
+color_ramp = SubResource("Gradient_umkd4")
+noise = SubResource("FastNoiseLite_f2dla")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_l3xd7"]
+albedo_color = Color(0.652883, 0.139892, 0.132648, 1)
+orm_texture = SubResource("NoiseTexture2D_4b8pc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8a062"]
+size = Vector3(50.837, 1, 45.1465)
+
+[node name="Node2D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.07846)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1668, 0, -19.2397)
+shape = SubResource("BoxShape3D_2io10")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2494, 0, -19.2564)
+size = Vector3(50.503, 1, 49.9736)
+material = SubResource("ORMMaterial3D_l3xd7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.84887, 0)
+light_energy = 5.04
+omni_range = 58.274
+
+[node name="Player" parent="." instance=ExtResource("1_germf")]
+
+[node name="enemy" parent="." instance=ExtResource("2_5j7df")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.619166, -15.3816)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.000558539, -1, 0, 1, -0.000558539, 0, 0, 0, 1, 9.63791, 36.6108, 10.7544)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1668, 0, -19.2397)
+shape = SubResource("BoxShape3D_2io10")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2494, 0, -19.2564)
+size = Vector3(50.503, 1, 49.9736)
+material = SubResource("ORMMaterial3D_l3xd7")
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D2"]
+gravity_space_override = 3
+gravity_point = true
+gravity_point_unit_distance = 0.08
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2/Area3D"]
+transform = Transform3D(0.999994, -7.567e-10, 0, 7.567e-10, 0.999994, 0, 0, 0, 1, -14.9003, 0.68671, -22.0732)
+shape = SubResource("BoxShape3D_8a062")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.8231, 36.2495)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1668, 0, -19.2397)
+shape = SubResource("BoxShape3D_2io10")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2494, 0, -19.2564)
+size = Vector3(50.503, 1, 49.9736)
+material = SubResource("ORMMaterial3D_l3xd7")

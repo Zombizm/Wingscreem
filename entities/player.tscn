@@ -1,17 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://chxrq0w2cyphl"]
+[gd_scene load_steps=5 format=3 uid="uid://chxrq0w2cyphl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3g1f3"]
+[ext_resource type="PackedScene" uid="uid://shvr4lwqjmpp" path="res://levels/hands.tscn" id="2_s1f3h"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gan0q"]
-radius = 0.645268
-height = 3.25729
+[sub_resource type="ViewportTexture" id="ViewportTexture_q8su5"]
+viewport_path = NodePath("head/Camera3D/Sprite3D/SubViewport")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_udhf0"]
+height = 1.44353
 
 [node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13292, 0)
+motion_mode = 1
 script = ExtResource("1_3g1f3")
+metadata/dodge_coldown = 0.0
+metadata/is_dodging = false
 
-[node name="head" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65621, 0)
-shape = SubResource("CapsuleShape3D_gan0q")
+[node name="head" type="Marker3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04752, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="head/Camera3D"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, -0.75)
+billboard = 1
+texture = SubResource("ViewportTexture_q8su5")
+
+[node name="SubViewport" type="SubViewport" parent="head/Camera3D/Sprite3D"]
+transparent_bg = true
+size = Vector2i(1366, 768)
+size_2d_override = Vector2i(123, 123)
+
+[node name="hands" parent="head/Camera3D/Sprite3D/SubViewport" instance=ExtResource("2_s1f3h")]
+
+[node name="look_at" type="Marker3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_udhf0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 4.717
+omni_range = 16.8216

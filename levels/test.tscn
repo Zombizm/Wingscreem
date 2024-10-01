@@ -1,44 +1,118 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdxifv2r4tlcl"]
+[gd_scene load_steps=7 format=3 uid="uid://bdxifv2r4tlcl"]
 
 [ext_resource type="PackedScene" uid="uid://chxrq0w2cyphl" path="res://entities/player.tscn" id="2_ui1rq"]
-[ext_resource type="PackedScene" uid="uid://bgn6u0holn3eh" path="res://entities/testEnemy.tscn" id="2_xu5ju"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2io10"]
-size = Vector3(50.2777, 1, 49.9968)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ug0u"]
+albedo_color = Color(0.303233, 0.303233, 0.303233, 1)
 
-[sub_resource type="Gradient" id="Gradient_umkd4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xeu5"]
+albedo_color = Color(0.223103, 0.223103, 0.223103, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_f2dla"]
-frequency = 0.0259
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n33rm"]
+albedo_color = Color(0.355314, 0.355314, 0.355314, 1)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4b8pc"]
-color_ramp = SubResource("Gradient_umkd4")
-noise = SubResource("FastNoiseLite_f2dla")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsqon"]
+albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_l3xd7"]
-albedo_color = Color(0.652883, 0.139892, 0.132648, 1)
-orm_texture = SubResource("NoiseTexture2D_4b8pc")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnfd2"]
 
-[node name="Node2D" type="Node3D"]
+[node name="myHell" type="Node3D"]
 
-[node name="enemy" parent="." instance=ExtResource("2_xu5ju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.08192, -15.3816)
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.07846)
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(200, 16, 150)
+material = SubResource("StandardMaterial3D_4ug0u")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1668, 0, -19.2397)
-shape = SubResource("BoxShape3D_2io10")
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.036, 2, -46.12)
+operation = 2
+size = Vector3(40, 10, 40)
+material = SubResource("StandardMaterial3D_1xeu5")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2494, 0, -19.2564)
-size = Vector3(50.503, 1, 49.9736)
-material = SubResource("ORMMaterial3D_l3xd7")
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.285, 2, -46.579)
+operation = 2
+size = Vector3(40, 10, 40)
+material = SubResource("StandardMaterial3D_1xeu5")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.84887, 0)
-light_energy = 5.04
-omni_range = 58.274
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.1842, 2, -46.12)
+operation = 2
+size = Vector3(40, 10, 40)
+material = SubResource("StandardMaterial3D_1xeu5")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.4445, 2, -46.12)
+operation = 2
+size = Vector3(40, 10, 40)
+material = SubResource("StandardMaterial3D_1xeu5")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -51.9987)
+operation = 2
+size = Vector3(150, 10, 3)
+material = SubResource("StandardMaterial3D_n33rm")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.6053, 2, -4.73378)
+operation = 2
+size = Vector3(3, 10, 50)
+material = SubResource("StandardMaterial3D_hsqon")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13293, 2, -5.67133)
+operation = 2
+size = Vector3(162.102, 10, 28.8259)
+material = SubResource("StandardMaterial3D_dnfd2")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.01, 0)
+visible = false
+size = Vector3(200, 4, 150)
 
 [node name="Player" parent="." instance=ExtResource("2_ui1rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.475334, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, -7)
+light_color = Color(0.601267, 0.559884, 0.436751, 1)
+light_energy = 9.404
+omni_range = 52.559
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13397, 0, -7)
+light_color = Color(0.601267, 0.559884, 0.436751, 1)
+light_energy = 9.404
+omni_range = 52.559
+
+[node name="OmniLight3D" type="OmniLight3D" parent="OmniLight3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.0623, 0, 3.11146)
+light_color = Color(0.601267, 0.559884, 0.436751, 1)
+light_energy = 9.404
+omni_range = 52.559
+
+[node name="OmniLight3D" type="OmniLight3D" parent="OmniLight3D2/OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 1.64401, -47.04)
+light_color = Color(0.601267, 0.559884, 0.436751, 1)
+light_energy = 9.404
+omni_range = 52.559
+
+[node name="OmniLight3D" type="OmniLight3D" parent="OmniLight3D2/OmniLight3D/OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.916, 0, -7)
+light_color = Color(0.601267, 0.559884, 0.436751, 1)
+light_energy = 9.404
+omni_range = 52.559
+
+[node name="OmniLight3D" type="OmniLight3D" parent="OmniLight3D2/OmniLight3D/OmniLight3D/OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.1827, 1.21192, 22.045)
+light_color = Color(0.601267, 0.559884, 0.436751, 1)
+light_energy = 9.404
+omni_range = 52.559
+
+[node name="OmniLight3D" type="OmniLight3D" parent="OmniLight3D2/OmniLight3D/OmniLight3D/OmniLight3D/OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.2071, 0, -7)
+light_color = Color(0.601267, 0.559884, 0.436751, 1)
+light_energy = 9.404
+omni_range = 52.559

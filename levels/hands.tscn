@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://shvr4lwqjmpp"]
+
+[ext_resource type="Texture2D" uid="uid://cndutwk25nuu3" path="res://res/img/ruki.png" id="1_ui2hg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahd3u"]
+atlas = ExtResource("1_ui2hg")
+region = Rect2(0, 0, 683, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8omjh"]
+atlas = ExtResource("1_ui2hg")
+region = Rect2(683, 0, 683, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8e4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahd3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8omjh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ytm8n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8omjh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="hands" type="Node2D"]
+
+[node name="leftHand" type="AnimatedSprite2D" parent="."]
+position = Vector2(341, 386)
+sprite_frames = SubResource("SpriteFrames_v8e4i")
+
+[node name="rightHand" type="AnimatedSprite2D" parent="."]
+position = Vector2(1025, 386)
+sprite_frames = SubResource("SpriteFrames_ytm8n")
